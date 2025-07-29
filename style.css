@@ -1,0 +1,31 @@
+.container{
+    background-color:rgb(131, 194, 136);
+    text-align: center;
+    width:900px;
+    height:auto;
+}
+.content{
+    display:flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+    
+table{
+    width:700px;
+    border-collapse: collapse;
+    border-color:black;
+}
+
+.btn{
+    width:70px;
+    height: 20px;
+    background-color: rgb(38, 189, 189);
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn:hover{
+    background-color: rgb(143, 141, 141);
+    color: white;
+}
+ 
+
