@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>App</title>
+</head>
+<body >
+    <center>
+        <div class="container">
+        <h1>To do list</h1>      
+        <div class="header">
+    <input type="text" id="taskName" placeholder="Task Name">
+    <select id="priority">
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select>
+    <input type="date" id="startDate">
+    <input type="date" id="dueDate">
+    <button class="btn" onclick="addTask()">Add</button>
+</div>
+        <div class="content">
+            <table border="1">
+                <tr>
+                        <td>Task Name</td>
+                        <td>Start date</td>
+                        <td>Due date</td>
+                        <td>Priority</td>
+                        <td>Status</td>
+                        <td>Action</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </center>
+
+
+<script>
+    function addTask() {
+        const taskName = document.getElementById("taskName").value;
+        const priority = document.getElementById("priority").value;
+        const startDate = document.getElementById("startDate").value;
+        const dueDate = document.getElementById("dueDate").value;
+
+        if (!taskName || !startDate || !dueDate) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        const table = document.querySelector("table");
+        const newRow = table.insertRow(-1);
+
+        newRow.insertCell(0).innerText = taskName;
+        newRow.insertCell(1).innerText = startDate;
+        newRow.insertCell(2).innerText = dueDate;
+        newRow.insertCell(3).innerText = priority;
+
+        // Create status cell with "Pending"
+        const statusCell = newRow.insertCell(4);
+        statusCell.innerText = "Pending";
+
+        // Action buttons
+        const actionCell = newRow.insertCell(5);
+
+        // Complete button
+        const completeBtn = document.createElement("button");
+        completeBtn.innerText = "Complete";
+        completeBtn.className = "btn";
+        completeBtn.onclick = () => {
+            statusCell.innerText = "Completed";
+            statusCell.style.textDecoration="line-through";
+        };
+
+        // Delete button
+        const delBtn = document.createElement("button");
+        delBtn.innerText = "Delete";
+        delBtn.className = "btn";
+        delBtn.style.marginLeft = "5px";
+        delBtn.onclick = () => table.deleteRow(newRow.rowIndex);
+
+        // Add both buttons to action cell
+        actionCell.appendChild(completeBtn);
+        actionCell.appendChild(delBtn);
+
+        // Clear fields
+        document.getElementById("taskName").value = "";
+        document.getElementById("startDate").value = "";
+        document.getElementById("dueDate").value = "";
+        document.getElementById("priority").value = "High";
+    }
+</script>
+
+
+
+</body>
+</html>
